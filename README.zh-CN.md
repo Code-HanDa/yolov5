@@ -130,3 +130,39 @@ if __name__ == '__main__':
     opt = parse_opt()
     main(opt)
 ```
+
+### 视频截取
+```angular2html
+实现游戏窗口监测，以及显示窗口大小自调整
+
+ if view_img:
+                if platform.system() == 'Linux' and p not in windows:
+                    windows.append(p)
+                    cv2.namedWindow(str(p), cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)  # allow window resize (Linux)
+                    cv2.resizeWindow(str(p), im0.shape[1], im0.shape[0])
+                cv2.namedWindow('CheckWindows', cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)
+                cv2.imshow('CheckWindows', im0)
+                cv2.waitKey(1)  # 1 millisecond
+```
+```angular2html
+主要使用了golang 环境的  直播推流工具  livego
+然后通过 OBS直播软件讲屏幕录屏 转成视频流  通过 livego  发送视频流
+yolov5 识别视频流。 使用cv2画图展示
+
+
+下载 livego 
+git地址：https://github.com/gwuhaolin/livego.git
+livego使用步骤：
+	1、转到 livego 目录并执行go build或make build
+	2、make run运行livego
+	3、获取串流密钥 http://localhost:8090/control/get?room=movie
+	4、推流地址 rtmp://localhost:1935/live
+	5、拉取播放地址 rtmp://localhost:1935/live/movie
+
+验证一下是否获取到窗口rtmp视频流，OBS自定义推流到livego的推流地址rtmp://localhost:1935/live，
+推荐使用potplayer（已经上传到白网盘）播放器找到网络播放输入livego的播放地址rtmp://localhost:1935/live/movie，就能看到你的窗口rtmp视频流了
+
+用OBS推流 给 livego
+
+修改 yolov5配置指令–source后输入livego的播放地址rtmp://localhost:1935/live/movie
+```
