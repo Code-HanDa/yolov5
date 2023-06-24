@@ -159,6 +159,8 @@ livego使用步骤：
 	4、推流地址 rtmp://localhost:1935/live
 	5、拉取播放地址 rtmp://localhost:1935/live/movie
 
+#### 注意每次重启应用都需要  重新获取秘钥 
+
 验证一下是否获取到窗口rtmp视频流，OBS自定义推流到livego的推流地址rtmp://localhost:1935/live，
 推荐使用potplayer（已经上传到白网盘）播放器找到网络播放输入livego的播放地址rtmp://localhost:1935/live/movie，就能看到你的窗口rtmp视频流了
 
